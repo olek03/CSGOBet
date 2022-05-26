@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: Poppins;
+  /* border: solid 1px; */
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  font-size: 3.5rem;
+  margin: 0;
+}
+
+h2 {
+  text-align: center;
+  color: black;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.matches {
+  text-align: center;
+  background-color: #B2E8E4;
+  width: 90vw;
+  height: 80vh;
+  color: white;
+  border-radius: 20px;
+  padding: 0 50px 0 50px;
+}
+
+.battleWindow {
+  box-shadow: 0 0 2px 2px black;
+  border-radius: 10px;
+  width: 345px;
+  height: 240px;
+  margin: 10px;
+  float: left;
+}
+
+.all_teams {
+  background-color: blueviolet;
+}
+
+.countdown {
+  color: rgb(34, 144, 34);
+  font-weight: bold;
+}
+
+.team_window {
+  width: 90%;
+  margin: 20px;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  color: black;
+  font-weight: bold;
+  text-align: right;
+  box-shadow: 0 0 2px 2px black;
+  padding: 7px 10px 7px 10px;
+  border-radius: 2px;
+}
+
+.team {
+  width: max-content;
+  height: 90%;
+  font-size: 1rem;
+}
+
+.info {
+  width: 90px;
+  height: 90%;
+  font-size: 0.75rem;
+  margin-left: 10%;
+}
+
+.bet_section {
+  width: 30%;
+  height: 90%;
+  font-size: 0.75rem;
+  margin-left: 10%;
+}
+
+.bet_section button {
+  background-color: limegreen;
+  border-radius: 3px;
+  color: white;
+  border: none;
+  font-weight: bold;
+  margin-top: 4px;
+}
+
+.bet_section button:hover {
+  box-shadow: 0 0 2px 2px white;
+}
+
+.bet_button {
+  width: max-content;
+}
+
+.bet_input {
+  width: 70px;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 0 2px 1px black;
+}
