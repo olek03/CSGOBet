@@ -30,33 +30,46 @@ h2 {
   text-align: center;
   background-color: #B2E8E4;
   width: 90vw;
-  height: 80vh;
+  height: 90vh;
   color: white;
   border-radius: 20px;
-  padding: 0 50px 0 50px;
+  padding: 2px 50px 20px 50px;
+  position: fixed;
+  left: 5vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
-.battleWindow {
+.battle_window {
   box-shadow: 0 0 2px 2px black;
   border-radius: 10px;
-  width: 345px;
+  width: 380px;
   height: 240px;
   margin: 10px;
   float: left;
 }
 
-.all_teams {
-  background-color: blueviolet;
-}
-
 .countdown {
   color: rgb(34, 144, 34);
   font-weight: bold;
+  width: 60%;
+}
+
+.outcome {
+  width: 30%;
+  text-align: right;
+  margin-right: 5%;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  height: min-content;
 }
 
 .team_window {
   width: 90%;
-  margin: 20px;
+  margin: 20px 20px 15px 20px;
   display: flex;
   justify-content: right;
   align-items: center;
@@ -69,23 +82,25 @@ h2 {
 }
 
 .team {
-  width: max-content;
+  min-width: 100px;
+  max-width: fit-content;
   height: 90%;
   font-size: 1rem;
+  text-align: left;
 }
 
 .info {
   width: 90px;
   height: 90%;
   font-size: 0.75rem;
-  margin-left: 10%;
+  margin-left: 20px;
 }
 
 .bet_section {
   width: 30%;
   height: 90%;
   font-size: 0.75rem;
-  margin-left: 10%;
+  margin-left: 10px;
 }
 
 .bet_section button {
@@ -97,12 +112,14 @@ h2 {
   margin-top: 4px;
 }
 
-.bet_section button:hover {
+.bet_button:hover {
   box-shadow: 0 0 2px 2px white;
+  transform: translateY(2px);
 }
 
 .bet_button {
   width: max-content;
+  transition: 150ms ease-in-out;
 }
 
 .bet_input {
@@ -110,4 +127,10 @@ h2 {
   border: none;
   border-radius: 2px;
   box-shadow: 0 0 2px 1px black;
+  outline: none;
+}
+
+.money {
+  color:rgb(133, 187, 65);
+  font-weight: bold;
 }

@@ -15,13 +15,18 @@ const Team: React.FC<{ team: teamProps }> = ({ team }): ReactElement => {
   if (multiplier.length === 3) multiplier += "0"
   if (multiplier.length === 1) multiplier += ".00"
 
+  let winrate: string = team.winrate + ""
+
+  if (winrate.length === 3) winrate += "0"
+  if (winrate.length === 1) winrate += ".00"
+
   return (
     <div className="team_window">
       <div className="team">
         {team.name}
       </div>
       <div className="info">
-        <span> winrate {team.winrate}</span><br></br>
+        <span> winrate {winrate}</span><br></br>
         <span> multiplier {multiplier}</span>
       </div>
       <div className="bet_section">

@@ -12,8 +12,8 @@ const DAYS: number = HOURS * 24
 
 const BATTLES_AMOUT = 20
 
-const minMatchAwait: number = HOURS * 0.5
-const maxMatchAwait: number = HOURS * 2
+const minMatchAwait: number = HOURS * 0.5 * 60
+const maxMatchAwait: number = HOURS * 2 * 60
 
 interface teamProps {
     teamId: Types.ObjectId
@@ -53,10 +53,9 @@ class Team implements teamProps {
 // teams database
 const teams: Team[] = []
 
-teams.push(new Team("iBuyPower"))
-teams.push(new Team("Titan"))
-teams.push(new Team("NaVi"))
-teams.push(new Team("Ninjas"))
+const teamNames: string[] = ["iBuyPower", "Titan", "NaVi", "Ninjas", "Volcano", "Blackhand", "Rogues", "Ultimax", "Tacticals", "RainbowSquad", "EnbyUs", "GsBhop", "Jormungandrs", "SailorNation"]
+
+teamNames.forEach((name: string): void => void teams.push(new Team(name)))
 
 const upcomingBattles: battleProps[] = []
 const battlesHistory: battleProps[] = []
@@ -76,16 +75,14 @@ const drawBattles = (): void => {
 
     // updating the count of wins
     teams[winnerIndex].wins++
-
+    
     // updating team winrate
-    let winRate: number | string = teams[winnerIndex].wins / teams[winnerIndex].loses
-    winRate = winRate + ""
+    let winRate: string = teams[winnerIndex].wins / teams[winnerIndex].loses + ""
+    if (winRate === "Infinity") winRate = "1"
     if (winRate.length > 4) winRate = winRate.substring(0, 3)
     teams[winnerIndex].winrate = parseFloat(winRate)
 
     const matchDate = Date.now() + Math.floor(Math.random() * (maxMatchAwait - minMatchAwait) + minMatchAwait)
-    // console.log("the time is: " + new Date(Date.now()))
-    // console.log("match starts in: " + new Date(matchDate))
 
     const battle: battleProps = {
         battleId: new Types.ObjectId(),
@@ -134,5 +131,8 @@ app.get("/getbattle", (req: Request, res: Response): void => {
     if (req.body == null) res.send("Specify the match")
     res.send(battlesHistory.find((battle: battleProps) => battle.battleId === req.body.battleId))
 })
+
+// matches history
+app.get("/history", (req: Request, res: Response): void => void res.send((battlesHistory)))
 
 app.listen(process.env.PORT || PORT)
