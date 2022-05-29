@@ -26,17 +26,6 @@ const App: React.FC = (): ReactElement => {
     const sorted: battleProps[] = battlesArray.sort((a, b) => a.matchDate - b.matchDate)
     setBattles(sorted)
     console.log("battles updated")
-    setTimeout((): void => {
-      if (matchesRef.current != null) {
-        const newHeight = matchesRef.current.clientHeight / window.innerHeight
-        const matches = document.querySelector(".matches")
-        if (matches != null) {
-          console.log(window.innerHeight)
-        }
-        // window.document.body.style.height = Math.floor(parseInt(matchesRef.current.style.height) * newHeight) + ""
-        // console.log("new height")
-      }
-    }, 100)
   }
 
   return (

@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import battleProps from '../interfaces'
 import Team from '../components/Team'
 import { Types } from 'mongoose'
@@ -6,6 +6,8 @@ import { Types } from 'mongoose'
 const Battle: React.FC<{ battle: battleProps, timerMap: Map<Types.ObjectId, any> }> = ({ battle, timerMap }): ReactElement => {
 
   const [timeString, setTimeString] = useState<string>()
+
+  const profitRef = useRef<HTMLSpanElement>(null)
 
   let timeLeft: number = Math.floor((battle.matchDate - Date.now()) / 1000)
 
@@ -47,13 +49,13 @@ const Battle: React.FC<{ battle: battleProps, timerMap: Map<Types.ObjectId, any>
 
   return (
     <div className="battle_window">
-      <Team team={battle.team1} />
-      <Team team={battle.team2} />
+      <Team team={battle.team1} profit={profitRef} />
+      <Team team={battle.team2} profit={profitRef} />
       <div className="details">
         <p className="countdown">Match date: {timeString}</p>
         <div className="outcome">
           outcome<br/>
-          <span className="money">0.00$</span>
+          <span className="money" ref={profitRef}>0.00$</span>
         </div>
       </div>
     </div>
