@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
-import battleProps from '../interfaces'
+import { battleProps } from '../interfaces'
 import Team from '../components/Team'
 import { Types } from 'mongoose'
 

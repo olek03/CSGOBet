@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios'
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import Battle from './components/Battle'
-import battleProps from './interfaces'
+import { battleProps } from './interfaces'
 import { Types } from 'mongoose'
 
 const App: React.FC = (): ReactElement => {
@@ -31,13 +31,15 @@ const App: React.FC = (): ReactElement => {
   return (
     <div className="App">
       <h1>Welcome to CSGOBet</h1>
+      <div className="profile">profile</div>
       <div className="matches" ref={matchesRef}>
         <h2>Upcoming Matches</h2>
         <div className="all_battles">
-            {battles.map((battle: battleProps) => (
-              <Battle key={new Types.ObjectId() + ""} battle={battle} timerMap={timersMap} />
-            ))}
-          </div>
+          {battles.map((battle: battleProps) => (
+            <Battle key={new Types.ObjectId().toString()} battle={battle} timerMap={timersMap} />
+          ))}
+          <div className="filler-bottom" />
+        </div>
       </div>
     </div>
   )

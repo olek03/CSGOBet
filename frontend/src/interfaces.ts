@@ -1,6 +1,6 @@
 import { Types } from 'mongoose'
 
-export default interface teamProps {
+export interface teamProps {
     teamId: Types.ObjectId
     name: string
     wins: number
@@ -9,7 +9,7 @@ export default interface teamProps {
     winrate: number
 }
 
-export default interface battleProps {
+export interface battleProps {
     battleId: Types.ObjectId
     team1: teamProps
     team2: teamProps
