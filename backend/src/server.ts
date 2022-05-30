@@ -4,6 +4,8 @@ import mongoose, { Types } from "mongoose"
 const app: Application = express()
 const PORT: number = 5000
 
+app.use(express.json())
+
 const MILI_SECONDS: number = 1000
 const SECONDS: number = MILI_SECONDS / 100
 const MINUTES: number = SECONDS * 60
@@ -14,6 +16,13 @@ const BATTLES_AMOUT = 20
 
 const minMatchAwait: number = HOURS * 0.5 * 60
 const maxMatchAwait: number = HOURS * 2 * 60
+
+interface accountProps {
+    accountId: Types.ObjectId
+    nickname: string
+    password: string
+    joinedDate: Date
+}
 
 interface teamProps {
     teamId: Types.ObjectId
@@ -49,6 +58,27 @@ class Team implements teamProps {
         this.winrate = 1
     }
 }
+
+class Account implements accountProps {
+    public accountId: Types.ObjectId
+    public nickname: string
+    public password: string
+    public joinedDate: Date
+
+    constructor(nickname: string, password: string) {
+        this.accountId = new Types.ObjectId()
+        this.nickname = nickname
+        this.password = password
+        this.joinedDate = new Date()
+    }
+    
+}
+
+// accounts database
+
+const accounts: Account[] = []
+
+accounts.push(new Account("admin", "admin"))
 
 // teams database
 const teams: Team[] = []
@@ -128,8 +158,28 @@ app.get("/battles", (req: Request, res: Response): void => void res.send(upcomin
 
 // find specific battle
 app.get("/getbattle", (req: Request, res: Response): void => {
-    if (req.body == null) res.send("Specify the match")
+    if (req.body == null) return void res.send("Specify the match")
     res.send(battlesHistory.find((battle: battleProps) => battle.battleId === req.body.battleId))
+})
+
+// get account info
+app.post("/account", (req: Request, res: Response): void => {
+    if (req.body == null) return void res.send("Specify the account")
+    
+    const account: accountProps = accounts.filter((acc: Account) => acc.nickname === req.body.nickname && acc.password === req.body.password)[0]
+    res.send(account)
+})
+
+app.post("/account/create", (req: Request, res: Response): void => {
+
+})
+
+app.post("/account/login", (req: Request, res: Response): void => {
+    
+})
+
+app.post("/account/refresh", (req: Request, res: Response): void => {
+    
 })
 
 // matches history
